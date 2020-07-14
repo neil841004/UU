@@ -19,7 +19,7 @@ public class ChangeLevel : MonoBehaviour
         
     }
 
-    void SwitchLevel() {
+    public void SwitchLevel() {
         SceneManager.LoadScene(levelName);
     }
 

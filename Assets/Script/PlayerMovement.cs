@@ -87,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove) return;
         float movement = x * speed;
         rb.velocity = new Vector2(movement, rb.velocity.y);
+        if (rb.velocity.x != 0)
+        {
+            Vector2 scale = transform.localScale;
+            scale.x = Mathf.Sign(rb.velocity.x) == 1f ? 1f : -1;
+            transform.localScale = scale;
+        }
     }
 
   

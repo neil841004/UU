@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Float")]
     public float speed = 5;
+    public float orignSpeed = 5;
+    public float dashSpeed = 5;
     public float jumpForce = 300;
     private float x;
 
@@ -43,17 +45,23 @@ public class PlayerMovement : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         SetJumpState();
-        if (Input.GetButtonDown("Jump"))
+        if (canMove)
         {
-            if (coll.OnGround() || doubleJump) startJump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (coll.OnGround() || doubleJump) startJump = true;
+            }
+            Dash();
         }
-
     }
 
     private void FixedUpdate()
     {
-        Move();
-        Jump();
+        if (canMove)
+        {
+            Move();
+            Jump();
+        }
 
         if (coll.OnGround()) {
             jumping = false;
@@ -95,7 +103,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-  
+    void Dash() {
+        if (Input.GetButton("Dash")) {
+            if(speed <= dashSpeed) speed += Time.deltaTime * 8;
+            return;
+        }
+            if (speed >= orignSpeed) speed -= Time.deltaTime * 4;
+    }
+
     void Jump()
     {
         if (coll.OnGround() && (rb.velocity.y < 1 && rb.velocity.y > -1))
@@ -125,5 +140,9 @@ public class PlayerMovement : MonoBehaviour
         {
             jumping = true;
         }
+    }
+
+    public void MoveOrNot(bool Active) {
+        canMove = Active;
     }
 }

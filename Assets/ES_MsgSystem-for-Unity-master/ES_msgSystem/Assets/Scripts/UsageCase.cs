@@ -26,6 +26,7 @@ public class UsageCase : MonoBehaviour
         //add special chars and functions in other component.
         msgSys.AddSpecialCharToFuncMap("UsageCase", CustomizedFunction);
         msgSys.AddSpecialCharToFuncMap("End", EndFunction);
+        msgSys.AddSpecialCharToFuncMap("Start", StartFunction);
     }
 
     private void CustomizedFunction()
@@ -33,9 +34,14 @@ public class UsageCase : MonoBehaviour
         Debug.Log("Hi! This is called by CustomizedFunction!");
     }
 
+    private void StartFunction()
+    {
+        GameObject.FindWithTag("Player").SendMessage("MoveOrNot", false);
+    }
+
     private void EndFunction() {
         textPanel.gameObject.SetActive(false);
-        this.gameObject.SetActive(false);
+        GameObject.FindWithTag("Player").SendMessage("MoveOrNot", true);
     }
 
     private void ReadTextDataFromAsset(TextAsset _textAsset)

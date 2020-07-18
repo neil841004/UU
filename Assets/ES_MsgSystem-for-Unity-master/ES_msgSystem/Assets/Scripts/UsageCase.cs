@@ -24,15 +24,10 @@ public class UsageCase : MonoBehaviour
             ReadTextDataFromAsset(textAsset);
 
         //add special chars and functions in other component.
-        msgSys.AddSpecialCharToFuncMap("UsageCase", CustomizedFunction);
         msgSys.AddSpecialCharToFuncMap("End", EndFunction);
         msgSys.AddSpecialCharToFuncMap("Start", StartFunction);
     }
 
-    private void CustomizedFunction()
-    {
-        Debug.Log("Hi! This is called by CustomizedFunction!");
-    }
 
     private void StartFunction()
     {

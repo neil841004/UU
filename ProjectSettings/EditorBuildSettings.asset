@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map_001_TimeRoad.unity
     guid: 200d32b3efcb2d844b25f5a6894b1af7
+  - enabled: 1
+    path: Assets/Scenes/Map_002_elevator.unity
+    guid: c58b310e989ddb0478bbada724950ab5
   m_configObjects: {}

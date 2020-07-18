@@ -32,7 +32,10 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
     private Collision coll;
 
-
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

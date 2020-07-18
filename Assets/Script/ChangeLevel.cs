@@ -7,10 +7,13 @@ using UnityEngine.Events;
 
 public class ChangeLevel : MonoBehaviour
 {
-    public GameObject mask;
-    public UnityEvent ChangeEvent = new UnityEvent();
+    //public DOTweenAnimation mask;
+    //public UnityEvent ChangeEvent = new UnityEvent();
+    //public UnityEvent FinishEvent = new UnityEvent();
     public string levelName;
     public float delayChangeTime = 2f;
+    public Vector3 positionV3;
+    //public GameObject camColse, camOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +27,6 @@ public class ChangeLevel : MonoBehaviour
         
     }
 
-    public void SwitchLevel() {
-        
-        SceneManager.LoadScene(levelName);
-    }
-
     private void OnTriggerStay2D(Collider2D co)
     {
         if (co.gameObject.tag == "Player") {
@@ -39,8 +37,15 @@ public class ChangeLevel : MonoBehaviour
     }
     IEnumerator EnterIenumerator(float delay)
     {
-        ChangeEvent.Invoke();
+        GameObject.FindWithTag("maskAni").GetComponent<DOTweenAnimation>().DOPlayBackwards();
+        GameObject.FindWithTag("Player").SendMessage("MoveOrNot", false);
         yield return new WaitForSeconds(delay);
-        SwitchLevel();
+        SceneManager.LoadScene(levelName);
     }
+
+    //public void ChangePosition() {
+    //    GameObject.FindWithTag("Player").transform.position = positionV3;
+    //    camColse.SetActive(false);
+    //    camOpen.SetActive(true);
+    //}
 }

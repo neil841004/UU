@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     static GameManager instance;
 
-    public UnityEvent StartEvent = new UnityEvent();
-
     // Start is called before the first frame update
 
     private void Awake()
     {
+        Debug.Log("Awake");
         if (instance == null)
         {
             instance = this;
@@ -25,8 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("B");
-        StartEvent.Invoke();
+        Debug.Log("Start");
     }
 
     // Update is called once per frame

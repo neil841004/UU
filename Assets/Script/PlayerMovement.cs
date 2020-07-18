@@ -34,7 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        if (GameObject.FindGameObjectsWithTag("Player").Length > 3)
+            Destroy(this.gameObject);
+        else
+            DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {

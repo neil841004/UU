@@ -12,7 +12,8 @@ public class ChangeLevel : MonoBehaviour
     //public UnityEvent FinishEvent = new UnityEvent();
     public string levelName;
     public float delayChangeTime = 2f;
-    public Vector3 positionV3;
+    public GameObject tip;
+    //public Vector3 positionV3;
     //public GameObject camColse, camOpen;
 
     // Start is called before the first frame update
@@ -35,6 +36,17 @@ public class ChangeLevel : MonoBehaviour
             }
         }   
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        tip.SetActive(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        tip.SetActive(false);
+    }
+
     IEnumerator EnterIenumerator(float delay)
     {
         GameObject.FindWithTag("maskAni").GetComponent<DOTweenAnimation>().DOPlayBackwards();

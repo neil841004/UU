@@ -13,5 +13,8 @@ EditorBuildSettings:
     guid: 200d32b3efcb2d844b25f5a6894b1af7
   - enabled: 1
     path: Assets/Scenes/Map_002_elevator.unity
+    guid: 461243ed1f631fb4c8934aacb643e08b
+  - enabled: 1
+    path: Assets/Scenes/Map_2015_Picture.unity
     guid: c58b310e989ddb0478bbada724950ab5
   m_configObjects: {}

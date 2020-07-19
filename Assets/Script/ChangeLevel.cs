@@ -61,7 +61,10 @@ public class ChangeLevel : MonoBehaviour
     IEnumerator EnterIenumerator(float delay)
     {
         GameObject.FindWithTag("maskAni").GetComponent<DOTweenAnimation>().DOPlayBackwards();
-        GameObject.FindWithTag("Player").SendMessage("MoveOrNot", false);
+        if (GameObject.FindWithTag("Player"))
+        {
+            GameObject.FindWithTag("Player").SendMessage("MoveOrNot", false);
+        }
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(levelName);
     }

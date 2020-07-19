@@ -13,6 +13,8 @@ public class ChangeLevel : MonoBehaviour
     public string levelName;
     public float delayChangeTime = 2f;
     public GameObject tip;
+
+    private bool inTrigger = false;
     //public Vector3 positionV3;
     //public GameObject camColse, camOpen;
 
@@ -25,26 +27,35 @@ public class ChangeLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (inTrigger) {
+            if (Input.GetButtonDown("Enter"))
+            {
+                SwitchLevel();
+            }
+        }
+    }
+
+    public void SwitchLevel() {
+        StartCoroutine("EnterIenumerator", delayChangeTime);
         
     }
 
-    private void OnTriggerStay2D(Collider2D co)
-    {
-        if (co.gameObject.tag == "Player") {
-            if (Input.GetButtonDown("Enter")) {
-                StartCoroutine("EnterIenumerator", delayChangeTime);
-            }
-        }   
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D co)
     {
         tip.SetActive(true);
+        if (co.gameObject.tag == "Player")
+        {
+            inTrigger = true;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D co)
     {
         tip.SetActive(false);
+        if (co.gameObject.tag == "Player")
+        {
+            inTrigger = false;
+        }
     }
 
     IEnumerator EnterIenumerator(float delay)
